@@ -7,7 +7,7 @@ longDescription= ""
 
 setup(name='segueSelect',
       version='1.',
-      description='SDSS/SEGUE selection function for G stars',
+      description='SDSS/SEGUE selection function for G and K stars',
       author='Jo Bovy',
       author_email='bovy@ias.edu',
       license='New BSD',
