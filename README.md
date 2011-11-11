@@ -31,8 +31,8 @@ cuts in signal-to-noise ratio, u-g, r-i, and E(B-V).
 To get started, download the files at
 http://sns.ias.edu/~bovy/segueSelect/, put them in some directory,
 define an environment variable SEGUESELECTDIR that points to this
-directory (*without* trailing slash), and untar the segueplates.tar.gz
-file (tar xvzf segueplates.tar.gz).
+directory, and untar the segueplates.tar.gz file (tar xvzf
+segueplates.tar.gz).
 
 
 After installing the package (python setup.py install) you can use the
