@@ -121,9 +121,10 @@ similar and are what are used to calculate the KS probability).
                  ebv=True,nocoords=False)
 
 which reads the G stars (*not* just the dwarfs!) and applies the
-color, SN, and E(B-V) cuts (same format as above). If galpy is
-installed, velocities will also be transformed into the Galactic
-coordinate frame (read the source for details).
+color, SN, and E(B-V) cuts (same format as above). If
+[galpy](https://github.com/jobovy/galpy) is installed, velocities will
+also be transformed into the Galactic coordinate frame (read the
+source for details).
 
 
 ##K STARS
