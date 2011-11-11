@@ -43,7 +43,7 @@ package as
 
 to get the selection function for the SEGUE G-star sample, using a
 signal-to-noise ratio cut of 15, and selecting all stars in the
-spectroscopic sample in the G-star color range 0.48 &lt g-r &lt 0.55
+spectroscopic sample in the G-star color range 0.48 <= g-r <= 0.55
 (as opposed to select='program', which just uses the stars that were
 targeted as G stars).
 
@@ -67,22 +67,26 @@ al. (2011), but other options include:
     type_bright= or type_faint=
     
         'constant': constant for each plate up to the faint limit for
-	the sample (decent for bright plates, *bad* for faint plates
-	that never reach as far as the faint limit) 
+	the bright/faint sample (decent for bright plates, *bad* for
+	faint plates that never reach as faint as the faint limit)
 
         'sharprcut': use a sharp cut rather than a hyperbolic tangent
 	cut-off at the faint end of the apparent magnitude range
 
 The recommended setting is 'tanhrcut' for both bright and faint plates.
 
+For a full list of options, do
+
+    ?segueSelect
 
 Once the selection function is initialized it can be evaluated as
 
      plate=1880
      value= selectionFunction(plate,r=16.)
 
-where value is then the fraction of stars in the SEGUE spectroscopic
-sample for that plate number and that r-band apparent magnitude.
+where value is then the fraction of stars in the photometric sample
+with a SEGUE spectrum passing the sample cuts for that plate number
+and that r-band apparent magnitude.
 
 
 ##ADVANCED FUNCTIONALITY
@@ -110,13 +114,28 @@ coordinate frame (read the source for details).
 
 The code can also determine the selection function for SEGUE K
 stars. However, the bright/faint boundary seems to move around for K
-stars as the survey progressed, so the default selection function
-fails to give a reasonable selection function for many plates. The K
-star selection function is still a work in progress, but determining
-the bright/faint boundary on a plate-by-plate basis seems to work for
-most plates. This can be done by using
+stars as the survey progressed (rather than stay constant at r=17.8
+mag), so the default selection function fails to give a reasonable
+selection function for many plates. The K star selection function is
+still a work in progress, but determining the bright/faint boundary on
+a plate-by-plate basis seems to work for most plates. This can be done
+by using
 
-    selectionFunction= segueSelect(sample='K',sn=15,select='all',indiv_brightlims=True)
+    selectionFunction= segueSelect(sample='K',sn=15,select='program',indiv_brightlims=True)
 
 Again, testing of this selection function has been very limited, so
-use care when using the K stars.
+use care when using the K stars. More details:
+
+    Iterating with Katie Schlesinger, I think I have mostly figured
+out the SEGUE K star selection function. It seems like there are ~40
+plates for which the bright/faint boundary is not near 17.8 mag for
+the K stars, but near 16 or 17 mag instead. A practical way to deal
+with this is to set the bright/faint boundary for each plate pair at
+the brightest spectroscopic K star on the faint plate of the pair.
+This seems to give an acceptable model for the K star selection
+function for the 'program' stars (those stars with the K-star target
+bit set); it does not work so well for the sample of all spectroscopic
+objects with 0.55 < g-r < 0.75, as there are always some stars much
+brighter than the interface. It's unclear whether this is a documented
+feature of the target selection (I cannot find any mention of it in
+the SEGUE paper).
