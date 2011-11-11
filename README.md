@@ -109,11 +109,12 @@ selection function.
 plots the selection function of this plate.
 
 
-    selectionFunction.plot_plate_rcdf(plate
+    selectionFunction.plot_plate_rcdf(plate)
 
 plots the cumulative distribution function in r-band apparent
 magnitude of the spectroscopic sample (red) and the photometric
-sample+selection-function-model for this plate.
+sample+selection-function-model for this plate (these should look
+similar and are what are used to calculate the KS probability).
 
 
     read_gdwarfs(file=_GDWARFALLFILE,logg=False,ug=False,ri=False,sn=True,
