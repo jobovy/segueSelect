@@ -23,10 +23,10 @@ This package requires [NumPy](http://numpy.scipy.org/), [Scipy] (http://www.scip
 segueSelect is a Python package that implements the model for the
 SDSS/SEGUE selection function described in Appendix A of
 [arXiv:111.1724](http://arxiv.org/abs/1111.1724). It automatically
-determines the selection fraction as a continuous function of apparent
-magnitude for each plate. The selection function can be determined for
-any desired sample cuts in signal-to-noise ratio, u-g, r-i, and
-E(B-V).
+determines the selection fraction---the fraction of stars with good
+spectra---as a continuous function of apparent magnitude for each
+plate. The selection function can be determined for any desired sample
+cuts in signal-to-noise ratio, u-g, r-i, and E(B-V).
 
 To get started, download the files at
 http://sns.ias.edu/~bovy/segueSelect/, put them in some directory,
