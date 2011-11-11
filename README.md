@@ -5,7 +5,7 @@
 Jo Bovy - bovy at ias dot edu
 
 If you find this code useful in your research, please cite
-[arXiv:111.1724](http://arxiv.org/abs/1111.1724). Thanks!
+[arXiv:1111.1724](http://arxiv.org/abs/1111.1724). Thanks!
 
 
 ##INSTALLATION
@@ -18,7 +18,7 @@ Standard python setup.py build/install
 This package requires [NumPy](http://numpy.scipy.org/), [Scipy] (http://www.scipy.org/), [Matplotlib] (http://matplotlib.sourceforge.net/), and [Pyfits](http://www.stsci.edu/resources/software_hardware/pyfits). To use coordinate transformations, [galpy](https://github.com/jobovy/galpy) is required.
 
 
-##DOCUMENTATION
+##BASIC DOCUMENTATION
 
 segueSelect is a Python package that implements the model for the
 SDSS/SEGUE selection function described in Appendix A of
@@ -30,9 +30,10 @@ E(B-V).
 
 To get started, download the files at
 http://sns.ias.edu/~bovy/segueSelect/, put them in some directory,
-untar the segueplates.tar.gz file (tar xvzf segueplates.tar.gz) and
 define an environment variable SEGUESELECTDIR that points to this
-directory (*without* trailing slash).
+directory (*without* trailing slash), and untar the segueplates.tar.gz
+file (tar xvzf segueplates.tar.gz).
+
 
 After installing the package (python setup.py install) you can use the
 package as
@@ -40,10 +41,11 @@ package as
 	from segueSelect import segueSelect
 	selectionFunction= segueSelect(sample='G',sn=15,select='all')
 
-to get the selection function for the SEGUE G star sample, using a
-signal-to-noise cut of 15, and selection all stars in the G star color
-range (as opposed to select='program', which just uses the stars that
-were targeted as G stars).
+to get the selection function for the SEGUE G-star sample, using a
+signal-to-noise ratio cut of 15, and selecting all stars in the
+spectroscopic sample in the G-star color range 0.48 &lt g-r &lt 0.55
+(as opposed to select='program', which just uses the stars that were
+targeted as G stars).
 
 The selection function is determined on the fly, so sample selection
 can be adjusted if desired. Relevant options are
@@ -83,7 +85,7 @@ where value is then the fraction of stars in the SEGUE spectroscopic
 sample for that plate number and that r-band apparent magnitude.
 
 
-##ADVANCED DOCUMENTATION
+##ADVANCED FUNCTIONALITY
 
 Please look at the source code (segueSelect/segueSelect.py) for an
 overview of the advanced capabilities of this package. Some useful
