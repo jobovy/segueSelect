@@ -86,7 +86,8 @@ Once the selection function is initialized it can be evaluated as
 
 where value is then the fraction of stars in the photometric sample
 with a SEGUE spectrum passing the sample cuts for that plate number
-and that r-band apparent magnitude.
+and that r-band apparent magnitude. 'r=' can be an array, for quicker
+evaluation.
 
 
 ##ADVANCED FUNCTIONALITY
@@ -124,18 +125,18 @@ by using
     selectionFunction= segueSelect(sample='K',sn=15,select='program',indiv_brightlims=True)
 
 Again, testing of this selection function has been very limited, so
-use care when using the K stars. More details:
+use care when using the K stars. More details from some email:
 
     Iterating with Katie Schlesinger, I think I have mostly figured
-out the SEGUE K star selection function. It seems like there are ~40
-plates for which the bright/faint boundary is not near 17.8 mag for
-the K stars, but near 16 or 17 mag instead. A practical way to deal
-with this is to set the bright/faint boundary for each plate pair at
-the brightest spectroscopic K star on the faint plate of the pair.
-This seems to give an acceptable model for the K star selection
-function for the 'program' stars (those stars with the K-star target
-bit set); it does not work so well for the sample of all spectroscopic
-objects with 0.55 < g-r < 0.75, as there are always some stars much
-brighter than the interface. It's unclear whether this is a documented
-feature of the target selection (I cannot find any mention of it in
-the SEGUE paper).
+    out the SEGUE K star selection function. It seems like there are ~40
+    plates for which the bright/faint boundary is not near 17.8 mag for
+    the K stars, but near 16 or 17 mag instead. A practical way to deal
+    with this is to set the bright/faint boundary for each plate pair at
+    the brightest spectroscopic K star on the faint plate of the pair.
+    This seems to give an acceptable model for the K star selection
+    function for the 'program' stars (those stars with the K-star target
+    bit set); it does not work so well for the sample of all spectroscopic
+    objects with 0.55 < g-r < 0.75, as there are always some stars much
+    brighter than the interface. It's unclear whether this is a documented
+    feature of the target selection (I cannot find any mention of it in
+    the SEGUE paper).
