@@ -61,8 +61,9 @@ can be adjusted if desired. Relevant options are
 
 The type of selection function can be set separately for 'bright'
 plates and 'faint' plates. The default for both is 'tanhrcut', which
-is the selection function described in Appendix A of Bovy et
-al. (2011), but other options include:
+is the selection function described in Appendix A of
+[arXiv:1111.1724](http://arxiv.org/abs/1111.1724), but other options
+include:
 
     type_bright= or type_faint=
     
