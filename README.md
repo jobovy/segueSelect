@@ -81,7 +81,7 @@ For a full list of options, do
 
 Once the selection function is initialized it can be evaluated as
 
-     plate=1880
+     plate=2964
      value= selectionFunction(plate,r=16.)
 
 where value is then the fraction of stars in the photometric sample
@@ -96,11 +96,25 @@ Please look at the source code (segueSelect/segueSelect.py) for an
 overview of the advanced capabilities of this package. Some useful
 functions are
 
+
     selectionFunction.check_consistency(plate)
 
 which will calculate the KS probability that the spectropscopic sample
 was drawn from the underlying photometric sample with the model
 selection function.
+
+
+    selectionFunction.plot(plate=plate)
+
+plots the selection function of this plate.
+
+
+    selectionFunction.plot_plate_rcdf(plate
+
+plots the cumulative distribution function in r-band apparent
+magnitude of the spectroscopic sample (red) and the photometric
+sample+selection-function-model for this plate.
+
 
     read_gdwarfs(file=_GDWARFALLFILE,logg=False,ug=False,ri=False,sn=True,
                  ebv=True,nocoords=False)
