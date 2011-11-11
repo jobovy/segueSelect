@@ -209,9 +209,6 @@ class segueSelect:
         elif self.sample == 'k':
             self.rmin= 14.5
             self.rmax= 19.
-        elif self.sample == 'fg':
-            self.rmin= 14.5
-            self.rmax= 20.
         if not _rmin is None: self.rmin= _rmin
         if not _rmax is None: self.rmax= _rmax
         #load the spectroscopic data
