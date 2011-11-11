@@ -619,8 +619,8 @@ class segueSelect:
             print "Plate %i has no spectroscopic data ..." % plate
             print "Returning ..."
             return None           
-        if xrange is None: xrange= [nu.amin([nu.amin(photr),nu.amin(specr)])-0.1,
-                                    nu.amax([nu.amax(photr),nu.amax(specr)])+0.1]
+        if xrange is None: xrange= [numpy.amin([numpy.amin(photr),numpy.amin(specr)])-0.1,
+                                    numpy.amax([numpy.amax(photr),numpy.amax(specr)])+0.1]
         if yrange is None: yrange= [0.,1.1]
         bovy_plot.bovy_plot(photr,fn1,photcolor+'-',overplot=overplot)
         bovy_plot.bovy_plot(specr,fn2,speccolor+'-',overplot=True)
@@ -660,20 +660,6 @@ class segueSelect:
         bovy_plot.bovy_plot(xs,ys,'k-',xrange=xrange,yrange=yrange,
                             xlabel=xlabel,ylabel=ylabel,
                             overplot=overplot)
-        #Also plot data
-        if self.type.lower() == 'r':
-            pindx= (self.plates == plate)
-            if self.platebright[str(plate)]:
-                bovy_plot.bovy_plot(self.s_r_plate_rs_bright,
-                                    self.s_r_plate_bright[:,pindx],
-                                    color='k',
-                                    marker='o',ls='none',overplot=True)
-                
-            else:
-                bovy_plot.bovy_plot(self.s_r_plate_rs_faint,
-                                    self.s_r_plate_faint[:,pindx],
-                                    color='k',
-                                    marker='o',ls='none',overplot=True)
         return None
 
     def plot_s_one_r(self,plate='a bright plate',overplot=False,color='k',
