@@ -26,11 +26,14 @@ _GDWARFALLFILE= os.path.join(_SEGUESELECTDIR,'gdwarfall_raw_nodups_ysl_nospec.fi
 _GDWARFFILE= os.path.join(_SEGUESELECTDIR,'gdwarf_raw_nodups_ysl_nospec.fit')
 _KDWARFALLFILE= os.path.join(_SEGUESELECTDIR,'kdwarfall_raw_nodups_ysl_nospec.fit')
 _KDWARFFILE= os.path.join(_SEGUESELECTDIR,'kdwarf_raw_nodups_ysl_nospec.fit')
+#DR9
+_GDWARFALLFILE_DR9= os.path.join(_SEGUESELECTDIR,'gdwarfall_dr9_nospec.fit')
+
 _ERASESTR= "                                                                                "
 class segueSelect:
     """Class that contains selection function for SEGUE targets"""
     def __init__(self,sample='G',plates=None,
-                 select='all',
+                 select='all',dr9=False,
                  type_bright='tanhrcut',dr_bright=None,
                  interp_type_bright='tanh',
                  interp_degree_bright=_INTERPDEGREEBRIGHT,
@@ -59,6 +62,7 @@ class segueSelect:
                    or 'faint'/'bright'plates only,
                    or plates '>1000' or '<2000'
 
+           dr9= if True, use DR9 photometry (default: false=DR7)
            SELECTION FUNCTION DETERMINATION:
               default: tanhrcut for both bright and faint
            
@@ -217,8 +221,12 @@ class segueSelect:
             sys.stdout.write('\r'+"Reading and parsing spectroscopic data ...\r")
             sys.stdout.flush()
             if sample.lower() == 'g':
-                if select.lower() == 'all':
+                if select.lower() == 'all' and not dr9:
                     self.spec= read_gdwarfs(ug=ug,ri=ri,sn=sn,
+                                            ebv=ebv,nocoords=True)
+                elif select.lower() == 'all' and dr9:
+                    self.spec= read_gdwarfs(file=_GDWARFALLFILE_DR9,
+                                            ug=ug,ri=ri,sn=sn,
                                             ebv=ebv,nocoords=True)
                 elif select.lower() == 'program':
                     self.spec= read_gdwarfs(file=_GDWARFFILE,
@@ -302,8 +310,12 @@ class segueSelect:
                 plate= self.plates[ii]
                 sys.stdout.write('\r'+"Loading photometry for plate %i" % plate)
                 sys.stdout.flush()
-                platefile= os.path.join(_SEGUESELECTDIR,'segueplates',
-                                        '%i.fit' % plate)
+                if dr9:
+                    platefile= os.path.join(_SEGUESELECTDIR,'segueplates_dr9',
+                                            '%i.fit' % plate)
+                else:
+                    platefile= os.path.join(_SEGUESELECTDIR,'segueplates',
+                                            '%i.fit' % plate)
                 self.platephot[str(plate)]= _load_fits(platefile)
                 #Split into bright and faint
                 if 'faint' in self.platestr[ii].programname:
