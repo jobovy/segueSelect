@@ -28,7 +28,6 @@ _KDWARFALLFILE= os.path.join(_SEGUESELECTDIR,'kdwarfall_raw_nodups_ysl_nospec.fi
 _KDWARFFILE= os.path.join(_SEGUESELECTDIR,'kdwarf_raw_nodups_ysl_nospec.fit')
 #DR9
 _GDWARFALLFILE_DR9= os.path.join(_SEGUESELECTDIR,'gdwarfall_dr9_nospec.fit')
-
 _ERASESTR= "                                                                                "
 class segueSelect:
     """Class that contains selection function for SEGUE targets"""
