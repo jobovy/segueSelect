@@ -3,7 +3,7 @@ import sys
 import copy
 import math
 import numpy
-from scipy import special, interpolate, optimize, maxentropy, stats
+from scipy import special, interpolate, optimize, misc, stats
 import pyfits
 import matplotlib
 try:
@@ -1162,11 +1162,11 @@ def _sf_tanh_minusloglike(params,rs,sfs,sferrs,rerrs=None,robust=False):
         for ii in range(len(rs)):
             thisgrid= grid*rerrs[ii]+rs[ii]
             if robust:
-                out+= maxentropy.logsumexp(presum+numpy.fabs(sfs[ii]-_sf_tanh(thisgrid,
+                out+= misc.logsumexp(presum+numpy.fabs(sfs[ii]-_sf_tanh(thisgrid,
                                                                               params))/\
                                                sferrs[ii])
             else:
-                out+= maxentropy.logsumexp(presum+(sfs[ii]-_sf_tanh(thisgrid,
+                out+= misc.logsumexp(presum+(sfs[ii]-_sf_tanh(thisgrid,
                                                                     params))**2./2./\
                                                sferrs[ii]**2.)
         return out
