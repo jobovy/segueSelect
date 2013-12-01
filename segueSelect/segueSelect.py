@@ -27,9 +27,10 @@ _GDWARFFILE= os.path.join(_SEGUESELECTDIR,'gdwarf_raw_nodups_ysl_nospec.fit')
 _KDWARFALLFILE= os.path.join(_SEGUESELECTDIR,'kdwarfall_raw_nodups_ysl_nospec.fit')
 _KDWARFFILE= os.path.join(_SEGUESELECTDIR,'kdwarf_raw_nodups_ysl_nospec.fit')
 #DR9
-_GDWARFALLFILE_DR9= os.path.join(_SEGUESELECTDIR,'gdwarfall_dr9_nospec.fit')
+_GDWARFALLFILE_DR9= os.path.join(_SEGUESELECTDIR,'gdwarfall_dr9_nospec_wsoplate.fit')
 #_GDWARFALLFILE_DR9= os.path.join(_SEGUESELECTDIR,'gdwarfall_nodups_mydr9.fit')
 _ERASESTR= "                                                                                "
+_RESOLVEFAINTBRIGHT= True
 class segueSelect:
     """Class that contains selection function for SEGUE targets"""
     def __init__(self,sample='G',plates=None,
@@ -228,6 +229,7 @@ class segueSelect:
                     self.spec= read_gdwarfs(file=_GDWARFALLFILE_DR9,
                                             ug=ug,ri=ri,sn=sn,
                                             ebv=ebv,nocoords=True)
+                    self.spec['plate']= self.spec['soplate']
                 elif select.lower() == 'program':
                     self.spec= read_gdwarfs(file=_GDWARFFILE,
                                             ug=ug,ri=ri,sn=sn,
@@ -240,6 +242,16 @@ class segueSelect:
                     self.spec= read_kdwarfs(file=_KDWARFFILE,
                                             ug=ug,ri=ri,sn=sn,
                                             ebv=ebv,nocoords=True)
+            if _RESOLVEFAINTBRIGHT and sample.lower() == 'g':
+                #Re-assign faint stars on bright plates and vice versa
+                for ii in range(len(self.spec)):
+                    try:
+                        if (self.spec['dered_r'][ii] > 17.8 and self.platebright['%i' % self.spec['plate'][ii]]) \
+                                or (self.spec['dered_r'][ii] < 17.8 and not self.platebright['%i' % self.spec['plate'][ii]]):
+                            pindx= self.plates == self.spec['plate'][ii]
+                            self.spec['plate'][ii]= self.plates[self.platemate[pindx]]
+                    except KeyError:
+                        pass
             self.platespec= {}
             for plate in self.plates:
                 #Find spectra for each plate
