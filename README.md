@@ -29,7 +29,7 @@ plate. The selection function can be determined for any desired sample
 cuts in signal-to-noise ratio, u-g, r-i, and E(B-V).
 
 To get started, download the files at
-http://sns.ias.edu/~bovy/segueSelect/, put them in some directory,
+http://astro.utoronto.ca/~bovy/segueSelect/, put them in some directory,
 define an environment variable SEGUESELECTDIR that points to this
 directory, and untar the segueplates.tar.gz file (tar xvzf
 segueplates.tar.gz).
